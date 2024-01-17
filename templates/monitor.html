@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/monitor_style.css') }}">
+    <title>Monitor</title>
+</head>
+<body>
+    <div class="head-card">
+      <div class="card-title">
+        <span class="title">Статистика</span>
+      </div>
+      <hr class="divider">
+      <div id="chart-card">
+        <div class="chart-title">
+          День
+        </div>
+        <div class="chart">
+          <canvas id="line-chart"></canvas>
+        </div>
+      </div>
+      <hr class="divider">
+      <div class="charts-buttons">
+        <div class="chart-btn" onclick="updateChart('День')">День</div>
+        <div class="chart-btn" onclick="updateChart('Неделя')">Неделя</div>
+        <div class="chart-btn" onclick="updateChart('Месяц')">Месяц</div>
+      </div>
+    </div>
+    <div class="key">
+      <div class="key-id">#{{ user_id }}</div>
+      <div class="key-info">
+        <div class="key-location">Amsterdam</div>
+        <div class="key-usage">
+          <div class="key-plan">Free plan</div>
+          <div class="key-remains">{{ remains }} / 30 Гб</div>
+          <div class="key-up-date">{{ update_date }}</div>
+        </div>
+      </div>
+    </div>
+    <div id="data_day" data-day-json="{{ data_day_json|tojson|safe }}"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script src="{{ url_for('static', filename='js/monitor-main.js') }}"></script>
+</body>
+</html>
